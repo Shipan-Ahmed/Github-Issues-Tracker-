@@ -23,11 +23,10 @@ let => let was introduced in ES6 and it is block-scoped. That means it only exis
 const => const is also block-scoped like let, but its value cannot be reassigned after it is declared. However, if a const variable contains an object or array, the contents of that object or array can still be modified.
 
 Example:
-          let age = 20;
-          age = 21;  // allowed
+        const a = [1, 2];
+        const b = [3, 4];
 
-          const name = "John";
-          name = "Mike"; // not allowed
+        const result = [...a, ...b];
 
 
 2️⃣ What is the spread operator (...)?
@@ -70,7 +69,7 @@ forEach(): forEach() is simply used to run a function for each element of an arr
 
 Example:
                 numbers.forEach(n => {
-                        console.log(n);
+                 console.log(n);
                 });
 
 So in short, map() transforms data, filter() selects data, and forEach() just loops through elements.
