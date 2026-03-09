@@ -3,6 +3,50 @@
 
 let currentTab = "all";
 
+const loadCardInfo = async (issueId) => {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    // console.log(data);
+    const issue = data.data;
+    DisplayCardInfo(issue);
+}
+
+// assignee: "jane_smith";
+// author: "john_doe";
+// createdAt: "2024-01-15T10:30:00Z";
+// description: "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.";
+// id: 1;
+// labels: (2)[("bug", "help wanted")];
+// priority: "high";
+// status: "open";
+// title: "Fix navigation menu on mobile devices";
+// updatedAt: "2024-01-15T10:30:00Z";
+                
+
+const DisplayCardInfo = (issue) => {
+    // console.log(issue);
+    const cardInfoContainer = document.getElementById("cardInfoContainer");
+    cardInfoContainer.innerHTML = `
+        <h2 class="font-bold text-xl">${issue.title}</h2>
+        <p class="space-x-1 flex justify-start items-center"><span class="${issue.status === "open" ? "bg-green-400" : "bg-purple-300"} rounded-xl p-2">${issue.status} </span><span class="w-2 h-2 bg-gray-400 rounded-full inline-block mx-2"></span><span class="text-gray-500">${issue.author? issue.status: ""} by ${issue.author? issue.author: "Author not found"} </span><span class="w-2 h-2 bg-gray-400 rounded-full inline-block mx-2"></span><span class="text-gray-500">${new Date(issue.createdAt).toLocaleDateString()}</span></p>
+        <p class="space-x-2">${createElement(issue.labels)}</p>
+        <p class="text-gray-500">${issue.description} </p>
+        <div class="flex  gap-30  justify-start items-center">
+            <div>
+                <p class="text-gray-500">Assignee:</p>
+                <p class="font-medium">${issue.assignee ? issue.assignee : "Not found"} </p>
+            </div>
+            <div>
+                <p class="text-gray-500">Priority:</p>
+                <p class="font-medium ${issue.priority === "low" ? "bg-blue-100 text-blue-400" : issue.priority === "medium" ? "bg-yellow-100 text-yellow-400" : "bg-red-100 text-red-400"} px-6 py-1 rounded-2xl">${issue.priority.toUpperCase()} </p>
+            </div>
+        </div>
+    `;
+
+    my_modal_5.showModal();
+}
+
 const manageSpinner = (isLoading) => {
   const spinnerSection = document.getElementById("spinner");
   if (isLoading) {
@@ -65,6 +109,7 @@ const renderUI = (issuesArr) => {
     issuesArr.forEach(issue => {
         const card = document.createElement("div");
         card.classList.add("space-y-2", "border-t-4", issue.status === "open" ? "border-green-500" : "border-purple-500", "shadow-lg", "rounded-xl");
+        card.addEventListener("click", () => loadCardInfo(issue.id));
         card.innerHTML = `
             <div class="space-y-2  p-4  shadow ">
                  <div class="flex justify-between items-center ">
@@ -82,9 +127,8 @@ const renderUI = (issuesArr) => {
 
         `;
         cardContainer.appendChild(card);
-        manageSpinner(false);
-
     })
+    manageSpinner(false);
 
 };
 
@@ -107,6 +151,7 @@ document.querySelectorAll(".tabBtn").forEach(btn => {
 
 
 // for search functionality
+
 
 document.getElementById("searchBtn").addEventListener("click", () => {
     const inputValue = document.getElementById("input").value.trim().toLowerCase();
