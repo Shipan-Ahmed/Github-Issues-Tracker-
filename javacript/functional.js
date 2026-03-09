@@ -132,17 +132,22 @@ const renderUI = (issuesArr) => {
 
 };
 
+const removeActive = () => {
+    document.querySelectorAll(".tabBtn").forEach(btn => {
+        btn.classList.remove("btn-primary");
+    });
+};
+
 
 // btn -swtching
 
 document.querySelectorAll(".tabBtn").forEach(btn => {
     btn.addEventListener("click", () => {
-        document.querySelectorAll(".tabBtn").forEach(btn => {
-                btn.classList.remove("bg-blue-700", "text-white");
-                btn.classList.add("bg-gray-200", "text-black");
-        });
-        btn.classList.remove("bg-gray-200", "text-black");
-        btn.classList.add("bg-blue-700", "text-white");
+        // document.querySelectorAll(".tabBtn").forEach(btn => {
+        //         btn.classList.remove("btn-primary");
+        // });
+        removeActive();
+        btn.classList.add("btn-primary");
         currentTab = btn.dataset.tab;
         // console.log(currentTab);
         loadData(currentTab);
@@ -150,10 +155,11 @@ document.querySelectorAll(".tabBtn").forEach(btn => {
 })
 
 
+
 // for search functionality
 
-
 document.getElementById("searchBtn").addEventListener("click", () => {
+    removeActive();
     const inputValue = document.getElementById("input").value.trim().toLowerCase();
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`)
         .then((res) => res.json())
