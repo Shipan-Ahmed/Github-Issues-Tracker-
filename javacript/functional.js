@@ -52,9 +52,11 @@ const manageSpinner = (isLoading) => {
   if (isLoading) {
     spinnerSection.classList.remove("hidden");
     document.getElementById("cardContainer").classList.add("hidden");
+    document.getElementById("deshBoard").classList.add("hidden");
   } else {
     spinnerSection.classList.add("hidden");
     document.getElementById("cardContainer").classList.remove("hidden");
+    document.getElementById("deshBoard").classList.remove("hidden");
   }
 };
 
@@ -160,6 +162,7 @@ document.querySelectorAll(".tabBtn").forEach(btn => {
 
 document.getElementById("searchBtn").addEventListener("click", () => {
     removeActive();
+    manageSpinner(true);
     const inputValue = document.getElementById("input").value.trim().toLowerCase();
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`)
         .then((res) => res.json())

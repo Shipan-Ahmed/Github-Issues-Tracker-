@@ -16,9 +16,9 @@
 
 var, let, and const are used to declare variables in JavaScript. The main difference between them is how they behave with scope and reassignment.
 
-Var => var is function-scoped which means it is accessible anywhere inside the function where it is declared. It can  also be redeclared and reassigned, which sometimes causes unexpected behavior.
+Var => var is function-scoped which means it is accessible anywhere inside the function where it is declared. It can  also be redeclared and reassigned which sometimes causes unexpected behavior.
 
-let => let was introduced in ES6 and it is block-scoped. That means it only exists inside the block { } where it is declared. Unlike var, it cannot be redeclared in the same scope, but its value can be changed.
+let => let was introduced in ES6 and it is block-scoped. That means it only exists inside the block { } where it is declared. Unlike var, it cannot be redeclared in the same scope but its value can be changed.
 
 const => const is also block-scoped like let, but its value cannot be reassigned after it is declared. However, if a const variable contains an object or array, the contents of that object or array can still be modified.
 
@@ -30,7 +30,6 @@ Example:
           name = "Mike"; // not allowed
 
 
-
 2️⃣ What is the spread operator (...)?
 
 Definition: The spread operator (...) is used to expand elements of an array or properties of an object. It helps when we want to copy arrays, merge arrays, or pass multiple values to a function.
@@ -38,13 +37,12 @@ Definition: The spread operator (...) is used to expand elements of an array or 
 For example, if we want to combine two arrays, we can use the spread operator instead of writing a loop.
 
 Example:
+                const a = [1, 2];
+                const b = [3, 4];
 
-          const a = [1, 2];
-          const b = [3, 4];
+                const result = [...a, ...b];
 
-          const result = [...a, ...b];
-
-          Now result will contain [1, 2, 3, 4].
+      Now result will contain [1, 2, 3, 4].
 
 It is also useful when copying arrays or objects without modifying the original data.
 
@@ -64,16 +62,16 @@ Example:
 filter(): filter() is used when we want to select elements that match a specific condition.
 
 Example:
-      const numbers = [1,2,3,4];
-      const result = numbers.filter(n => n > 2);
+                const numbers = [1,2,3,4];
+                const result = numbers.filter(n => n > 2);
 
 
 forEach(): forEach() is simply used to run a function for each element of an array. It does not return a new array.
 
 Example:
-        numbers.forEach(n => {
-          console.log(n);
-        });
+                numbers.forEach(n => {
+                        console.log(n);
+                });
 
 So in short, map() transforms data, filter() selects data, and forEach() just loops through elements.
 
@@ -88,21 +86,22 @@ Instead of using the function keyword, we use an arrow (=>) between the paramete
 
 Example:
 
-        Normal function:
+                Normal function:
 
-                        function add(a, b) {
-                          return a + b;
-                        }
+                                function add(a, b) {
+                                return a + b;
+                                }
 
-        Arrow function:
+                Arrow function:
 
-                      const add = (a, b) => {
-                        return a + b;
-                      };
+                                const add = (a, b) => {
+                                return a + b;
+                                };
+
 
 If the function has only one expression, we can even write it in a shorter way:
 
-                      const add = (a, b) => a + b;
+                  const add = (a, b) => a + b;
 
 Arrow functions are commonly used in modern JavaScript, especially with array methods like map() and filter().
 
