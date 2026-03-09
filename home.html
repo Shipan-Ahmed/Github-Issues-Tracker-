@@ -31,7 +31,7 @@
 
     <!-- header section  -->
     <header class= " bg-white shadow ">
-        <nav class="ml-10 mr-10 mt-1 mb-1 p-4 flex justify-between items-center  ">
+        <nav class="ml-10 mr-10 mt-1 mb-1 p-4 flex flex-col gap-5  md:flex-row justify-between items-center  ">
             <div class="flex justify-between items-center  gap-1 ">
                 <img class="mx-auto w-[50px] h-[50px]" src="./assets/github-logo.png" alt="github logo" >
                 <h2 class="text-2xl font-bold">Github Issues Tracker</h2>
@@ -61,8 +61,7 @@
     </section>
 
     <!-- loading spinner  -->
-    <section id="spinner"
-        class="w-[85%] mx-auto text-center mt-5  hidden">
+    <section id="spinner" class="w-[85%] mx-auto text-center mt-5  hidden">
         <span class="loading loading-bars loading-xl"></span>
     </section>
 
@@ -86,7 +85,6 @@
                 <p>Open</p>
             </div>
             <div class="flex gap-2 justify-center items-center">
-                <!-- <img class="w-6 h-6 mx-auto" src="./assets/Closed- Status .png" alt="Closed Status Logo"> -->
                  <p class="w-3 h-3 bg-purple-500 rounded-full"></p>
                 <p>Closed</p>
             </div>
@@ -128,7 +126,7 @@
             <div class="modal-action">
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
+                    <button class="btn btn-primary">Close</button>
                 </form>
             </div>
         </div>
